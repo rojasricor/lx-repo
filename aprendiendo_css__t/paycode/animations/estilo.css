@@ -1,0 +1,34 @@
+* {
+  font-family: monospace;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.container {
+	filter: contrast(20);
+	background: #fff;
+}
+
+.caja {
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	background: red;
+	margin: 40px;
+	border-radius: 50%;
+	filter: blur(20px);
+}
+
+.caja:first-child{
+	animation: fade 1s  alternate infinite;
+}
+
+@keyframes fade {
+	0%{
+		transform: translate(0);
+	}
+
+	100%{
+		transform: translate(160px);
+	}
+}

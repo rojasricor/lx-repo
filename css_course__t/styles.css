@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+h2 {
+    font: bold 14px sans-serif;
+}
+header, section, footer, aside, nav, article, hgroup {
+    display: block;
+}
+body {
+    text-align: center;
+    background: #ccc;
+}
+.container {
+    border: 1px solid #000;
+    width: 960px;
+    margin: 15px auto;
+    background: #fff;
+}
+.header {
+    background: #fffbb9;
+    border: 1px solid #999999;
+    padding: 20px;
+}
+.header h1 {
+    text-align: left;
+}
+.nav {
+    background: #ccc;
+    padding: 5px 15px;
+    text-align: left;
+}
+.nav li {
+    list-style: none;
+    padding: 5px;
+    font: bold 14px verdana;
+    display: inline-block;
+}
+.section {
+    margin: 20px;
+    width: 600px;
+    float: left;
+}
+article {
+    background: #fffbcc;
+    border: 1px solid #999;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+article footer {
+    text-align: right;
+    margin-top: 20px;
+}
+time {
+    color: #999;
+}
+.aside {
+    width: 300px;
+    float: left;
+    margin: 20px 0;
+}
+.aside blockquote {
+    border: 1px solid #000;
+    padding: 40px;
+    background: #fffbb9;
+    margin-bottom: 20px;
+}
+.footer {
+    clear: both;
+    padding: 20px;
+    background: #2d3436;
+    color: #fff;
+}
+img {
+    width: 80px;
+    display: block;
+    margin: 20px auto;
+}

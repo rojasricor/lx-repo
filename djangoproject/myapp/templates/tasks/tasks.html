@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+<h1>Tasks</h1>
+
+
+<div class="tasks">
+    {% for task in tasks %}
+    <article class="card">{% if task.done %}✅{% else %}🕛{% endif %} {{ task.title }}</article>
+    <div class="danger">
+        <small>{{ task.description }}</small>
+        <button>Done ✅</button>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

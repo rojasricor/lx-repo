@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %} All {% endblock %}
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+	<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="{{url_for('add_contact')}}" method="POST">
+
+	<input type="text" name="fullname" placeholder="Fullname">
+	<input type="text" name="phone" placeholder="Phone">
+	<input type="text" name="email" placeholder="Email">
+	<button type="submit">
+		Save
+	</button>
+
+</form>
+
+<table>
+	<thead>
+		<tr>
+			<th>Fullname</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Operations</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for contact in contacts %}
+			<tr>
+				<td>{{ contact.1 }}</td>
+				<td>{{ contact.2 }}</td>
+				<td>{{ contact.3 }}</td>
+				<td>
+					<a href="{{url_for('get_contact',id=contact.0)}}">Edit</a>
+				</td>
+				<td>
+					<form action="{{url_for('delete_contact')}}" method="POST">
+						<input type="hidden" name="id" value="{{contact.0}}">
+						<button>Delete</button>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

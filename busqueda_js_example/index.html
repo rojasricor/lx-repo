@@ -1,0 +1,111 @@
+<!DOCTYPE html">
+<html>
+	<head>
+		
+		<title>Ejemplo de búsqueda de texto en Javascript</title>
+		<meta charset="UTF-8" />
+		<link type="text/css" rel="stylesheet" href="styles/style.css">
+
+		<script>
+
+			window.onload = function(){
+
+				//---Función de realizar la búsqueda
+				function searchInText( word, html ) {
+
+				    //---Eliminar los spans
+				    html = html.replace(/<span class="finded">(.*?)<\/span>/g, "$1");
+
+				    //---Crear la expresión regular que buscará la palabra
+				    var reg = new RegExp(word.replace(/[\[\]\(\)\{\}\.\-\?\*\+]/, "\\$&"), "gi");
+				    var htmlreg = /<\/?(?:a|b|br|em|font|img|p|span|strong)[^>]*?\/?>/g;
+
+				    //---Añadir los spans
+				    var array;
+				    var htmlarray;
+				    var len = 0;
+				    var sum = 0;
+				    var pad = 28 + word.length;
+
+				    while ((array = reg.exec(html)) != null) {
+
+				    	htmlarray = htmlreg.exec(html);
+				 
+				    	//---Verificar si la búsqueda coincide con una etiqueta html
+				        if(htmlarray != null && htmlarray.index < array.index && htmlarray.index + htmlarray[0].length > array.index + word.length){
+
+			        		reg.lastIndex = htmlarray.index + htmlarray[0].length;
+
+			        		continue;
+
+						}
+						
+						console.log()
+
+			        	len = array.index + word.length;
+
+						html = html.slice(0, array.index) + "<span class='finded'>" + html.slice(array.index, len) + "</span>" + html.slice(len, html.length);
+						scroll(0, 100)
+
+				        reg.lastIndex += pad;
+
+				        if(htmlarray != null) htmlreg.lastIndex = reg.lastIndex;
+				        
+				        sum++;
+
+				    }
+
+				    return {total: sum, html: html};
+
+				}
+
+				//---Al presionar el botón de buscar
+				document.getElementById("button").addEventListener("click", function(){
+
+					var search = document.getElementById("search").value;
+
+					if(search.length == 0) return;
+
+				    var props = searchInText( search, document.getElementById("content").innerHTML );
+				    
+				    document.getElementById("results").innerHTML = (props.total > 0) ? "Veces encontradas: " + props.total : "No se ha encontrado";
+				    
+				    if(props.total > 0) document.getElementById("content").innerHTML = props.html;
+
+				});
+
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="controls">
+			<input id="search" type="text" />
+			<button id="button">Buscar</button>
+			<span id="results"></span>
+		</div>
+
+		<div id="content">
+
+			<p>Todo comenzó con la forja de los Grandes Anillos.</p>
+			<p>Tres fueron entregados a los Elfos inmortales, los más sabios y bellos de todos los seres.</p>
+			<p>Siete a los señores Enanos. Grandes mineros y artesanos de las cavidades montañosas.</p>
+			<p>Y Nueve... Nueve fueron entregados a la raza de los hombres... Que ansían por encima de todo el Poder.</p>
+			<p>En aquellos anillos residía el poder y la voluntad para gobernar a cada raza. Pero todos ellos fueron engañados... Pues otro Anillo más fue forjado... En la tierra de Mordor, en los fuegos del Monte del destino, el Señor Oscuro Sauron forjó en secreto el Anillo Regente para controlar a todos los demás. En ese Anillo descargó toda su crueldad, su malicia y su voluntad de dominar todo tipo de vida... </p>
+			<p>Un Anillo para gobernarlos a todos. Uno a uno, los pueblos libres de la Tierra Media fueron sometidos por el poder del Anillo.</p>
+			<p><img class="image" align="left" src="images/imagen.jpg" width="200" height="221" />Pero hubo algunos que resistieron. Una Última Alianza de Hombres y Elfos lucharon contra el ejército de Mordor. Y en las lomas del Monte del Destino libraron su batalla por la libertad de la Tierra Media. La victoria estaba próxima... Pero nada puede acabar con el Poder del Anillo... Y fué en aquel preciso momento, desvanecida ya toda esperanza, cuando Isildur, Hijo del Rey recurrió a la espada de su padre...</p>
+			<p>Sauron, el enemigo de los pueblos libres de la Tierra Media fue derrotado.</p>
+			<p>El Anillo llegó a manos de Isildur, que tuvo la oportunidad de destruir su mal para siempre. Pero el corazón de los hombres se corrompe con facilidad, y el Anillo de Poder goza de voluntad propia. Traicionó a Isildur hasta llevarle a la muerte.</p>
+			<p>Y aquellos hechos que nunca debieron caer en el olvido, se perdieron en el tiempo. La Historia se convirtió en Leyenda. La Leyenda se convirtió en Mito, y durante 2.500 años el Anillo pasó desapercibido. Hasta que cuando se presentó la ocasión encontró a un nuevo dueño... ¡Mi Tessoro! El Anillo acabó en manos de la criatura Gollum que lo ocultó en las profundidades de las Montañas Nubladas. Y allí, le consumió.</p>
+			<p>Gollum: ¡Él vino a mi! ¡Todo mío! ¡Mi vida! ¡Todo mío! ¡Mi tessoro!</p>
+			<p>Galadriel: El Anillo proporcionó a Gollum longevidad antinatural. Durante 500 años envenenó su mente; y en la lúgubre caverna de Gollum esperó. La oscuridad negó los bosques del mundo. Llegó el rumor de que una sombra crecía en el Este. El murmullo de un temor sin nombre. El Anillo de Poder lo percibió. Su hora había llegado. Abandonó a Gollum, pero algo ocurrió al margen de la voluntad del anillo... fue recogido por la criatura que menos cabía imaginar... Por un Hobbit, Bilbo Bolsón, de la Comarca.</p>
+			<p>Gollum: ¡¡Perdido!! ¡MI TESSOORO! ¡PERDIDO!</p>
+			<p>Galadriel: Pero pronto llegaría el momento en que lo Hobbits tendrían en sus manos el futuro de todos...</p>
+
+		</div>
+
+	</body>
+</html>
