@@ -18,7 +18,7 @@ sudo apt update && sudo apt install sublime-text;
 
 
 ## Mysql commands ##
-GRANT ALL ON *.* TO 'miusuarioAdmin'@'localhost' IDENTIFIED BY 'mipassword' WITH GRANT OPTION;
+GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'admin' WITH GRANT OPTION;
 flush privileges;
 exit;
 
