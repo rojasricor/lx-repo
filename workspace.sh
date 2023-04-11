@@ -1,3 +1,4 @@
+sudo apt install git -y;
 git clone https://github.com/rojasricor/nodejs-rsystfip && git clone https://github.com/rojasricor/api-client-rsystfip;
 
 sudo apt update && sudo apt upgrade -y;
