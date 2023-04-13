@@ -23,3 +23,6 @@ GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'admin' WITH GRANT OPTION;
 flush privileges;
 exit;
 
+## git
+
+git config --global user.name "rojasricor" && git config --global user.email "rojasricor@gmail.com" && git config --global core.editor "vi" && git config --global color.ui true
